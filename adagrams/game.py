@@ -46,7 +46,17 @@ def uses_available_letters(word, letter_bank):
     return True
 
 def score_word(word):
-    pass
+    total_score = 0
+
+    for letter in word.upper():
+        total_score += SCORES.get(letter,0)
+
+    word_length = len(word)
+
+    if 7 <= word_length <= 10:
+        total_score += 8
+
+    return total_score
 
 def get_highest_word_score(word_list):
     pass
