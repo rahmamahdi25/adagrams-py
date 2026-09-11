@@ -31,11 +31,19 @@ def draw_letters():
         random_index = randint(0, current_len - 1)
         letter = copy_list.pop(random_index)
         hand.append(letter)
-        
+         
     return hand
 
 def uses_available_letters(word, letter_bank):
-    pass
+    copy_list = letter_bank.copy()
+    #For each letter in word, if letter is available remove, so not used again else exit.
+    for letter in word.upper():
+        if letter in copy_list:
+            copy_list.remove(letter)
+        else:
+            return False
+
+    return True
 
 def score_word(word):
     pass
