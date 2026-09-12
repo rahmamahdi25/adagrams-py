@@ -13,30 +13,27 @@ SCORES = {
     "Y": 4, "K": 5, "J": 8, "X": 8, "Q": 10, "Z": 10
     }
 
-LETTER_POOL_LIST = []
-
-# For each key (letter) and value (quantity) in LETTER_POOL:
-for letter, quantity in LETTER_POOL.items():
-    for _ in range(quantity):
-        LETTER_POOL_LIST.append(letter)
-
 def draw_letters():
-    #Create a copy to avoid removing letters from the original pool so it can be reused. 
-    copy_list = list(LETTER_POOL_LIST)
-    hand = []       
+    available_list = []
+
+    for letter, quantity in LETTER_POOL.items():
+        for index in range(quantity):
+            available_list.append(letter)
+
+    hand = []
     hand_length = 10
-    #For each index, grab random index, remove key(letter) at the random index, add letter to hand,    
+
     for index in range(hand_length):
-        current_len = len(copy_list)
+        current_len = len(available_list)
         random_index = randint(0, current_len - 1)
-        letter = copy_list.pop(random_index)
+        letter = available_list.pop(random_index)
         hand.append(letter)
          
     return hand
 
 def uses_available_letters(word, letter_bank):
     copy_list = letter_bank.copy()
-    #For each letter in word, if letter is available remove, so not used again else exit.
+
     for letter in word.upper():
         if letter in copy_list:
             copy_list.remove(letter)
@@ -49,7 +46,7 @@ def score_word(word):
     total_score = 0
 
     for letter in word.upper():
-        total_score += SCORES.get(letter,0)
+        total_score += SCORES[letter]
 
     word_length = len(word)
 
