@@ -17,13 +17,13 @@ def draw_letters():
     available_list = []
 
     for letter, quantity in LETTER_POOL.items():
-        for index in range(quantity):
+        for _ in range(quantity):
             available_list.append(letter)
 
     hand = []
     hand_length = 10
 
-    for index in range(hand_length):
+    for _ in range(hand_length):
         current_len = len(available_list)
         random_index = randint(0, current_len - 1)
         letter = available_list.pop(random_index)
